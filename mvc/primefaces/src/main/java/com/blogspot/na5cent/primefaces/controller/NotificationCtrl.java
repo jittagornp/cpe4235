@@ -69,7 +69,7 @@ public class NotificationCtrl implements Serializable {
     public void notifyMessage() {
         FacesContext.getCurrentInstance()
                 .addMessage(null, new FacesMessage(
-                                FacesMessage.SEVERITY_INFO,
+                                FacesMessage.SEVERITY_ERROR,
                                 "Add data",
                                 "success (user " + username + ")"
                         ));

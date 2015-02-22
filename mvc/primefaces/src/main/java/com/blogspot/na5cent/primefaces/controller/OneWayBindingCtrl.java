@@ -27,4 +27,12 @@ public class OneWayBindingCtrl implements Serializable{
     public String getApplicationName(){
         return name;
     }
+    
+    public String getEmail(){
+        return "jittagornp@gmail.com";
+    }
+    
+    public String getOccupation(){
+        return "programmer.";
+    }
 }

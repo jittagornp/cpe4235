@@ -26,6 +26,7 @@ public class LoginFormCtrl implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+        System.out.println("set username called.");
     }
 
     public String getPassword() {

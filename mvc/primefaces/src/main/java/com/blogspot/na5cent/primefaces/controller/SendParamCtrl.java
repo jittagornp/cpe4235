@@ -26,6 +26,6 @@ public class SendParamCtrl implements Serializable {
     }
 
     public void onSendParam() {
-        System.out.println("param " + request("postId"));
+        System.out.println("param = " + request("postId"));
     }
 }
