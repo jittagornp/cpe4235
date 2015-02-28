@@ -8,4 +8,7 @@
     </parent>
     <artifactId>orm</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>resource-local</module>
+    </modules>
 </project>
