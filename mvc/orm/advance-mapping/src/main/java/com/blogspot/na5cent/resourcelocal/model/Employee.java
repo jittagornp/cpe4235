@@ -32,17 +32,18 @@ public class Employee implements Serializable {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    //
+    //--------------------------------------------------------------------------
     @JoinColumn(name = "department_id")
     @ManyToOne
     private Department department;
-    //
+    //--------------------------------------------------------------------------
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private Employee manager;
 
     @OneToMany(mappedBy = "manager")
     private List<Employee> subordinates;
+    //--------------------------------------------------------------------------
 
     public Integer getId() {
         return id;

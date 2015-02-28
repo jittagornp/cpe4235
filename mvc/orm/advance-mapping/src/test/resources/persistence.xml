@@ -5,6 +5,7 @@
     <non-jta-data-source/>
     <class>com.blogspot.na5cent.resourcelocal.model.Employee</class>
     <class>com.blogspot.na5cent.resourcelocal.model.Department</class>
+    <class>com.blogspot.na5cent.resourcelocal.model.Location</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!--

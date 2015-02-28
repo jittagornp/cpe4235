@@ -12,8 +12,6 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,21 +20,21 @@ import javax.persistence.Table;
  * @author anonymous
  */
 @Entity
-@Table(name = "departments")
-public class Department implements Serializable {
+@Table(name = "locations")
+public class Location implements Serializable {
 
     @Id
-    @Column(name = "department_id")
+    @Column(name = "location_id")
     private Integer id;
-    @Column(name = "department_name")
-    private String name;
+    @Column(name = "street_address")
+    private String streetAddress;
+    @Column(name = "postal_code")
+    private String postalCode;
+    @Column(name = "state_province")
+    private String stateProvince;
     //--------------------------------------------------------------------------
-    @OneToMany(mappedBy = "department")
-    private List<Employee> employees;
-    //--------------------------------------------------------------------------
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
+    @OneToMany
+    private List<Department> departments;
     //--------------------------------------------------------------------------
 
     public Integer getId() {
@@ -47,38 +45,46 @@ public class Department implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
     }
 
-    public List<Employee> getEmployees() {
-        if (employees == null) {
-            employees = new ArrayList<>();
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getStateProvince() {
+        return stateProvince;
+    }
+
+    public void setStateProvince(String stateProvince) {
+        this.stateProvince = stateProvince;
+    }
+
+    public List<Department> getDepartments() {
+        if (departments == null) {
+            departments = new ArrayList<>();
         }
 
-        return employees;
+        return departments;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -90,7 +96,7 @@ public class Department implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Department other = (Department) obj;
+        final Location other = (Location) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
