@@ -11,5 +11,6 @@
     <modules>
         <module>mapping</module>
         <module>resource-local</module>
+        <module>advance-mapping</module>
     </modules>
 </project>
