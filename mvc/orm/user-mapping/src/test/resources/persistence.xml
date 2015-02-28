@@ -7,6 +7,7 @@
     <class>com.blogspot.na5cent.resourcelocal.model.Department</class>
     <class>com.blogspot.na5cent.resourcelocal.model.Location</class>
     <class>com.blogspot.na5cent.resourcelocal.model.User</class>
+    <class>com.blogspot.na5cent.resourcelocal.model.Authority</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!--

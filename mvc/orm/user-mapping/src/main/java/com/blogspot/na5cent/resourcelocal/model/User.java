@@ -6,11 +6,16 @@
 package com.blogspot.na5cent.resourcelocal.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,7 +30,9 @@ public class User implements Serializable {
     @Id
     @Column(name = "user_id")
     private Integer id;
+    @Column(length = 255, nullable = false, unique = true)
     private String username;
+    @Column(nullable = false)
     private String password;
     //--------------------------------------------------------------------------
     @JoinColumn(
@@ -36,6 +43,28 @@ public class User implements Serializable {
     )
     @OneToOne
     private Employee employee;
+    //--------------------------------------------------------------------------
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {
+                @JoinColumn(
+                        name = "user_id",
+                        referencedColumnName = "user_id",
+                        insertable = false,
+                        updatable = false
+                )
+            },
+            inverseJoinColumns = {
+                @JoinColumn(
+                        name = "auth_id",
+                        referencedColumnName = "auth_id",
+                        insertable = false,
+                        updatable = false
+                )
+            }
+    )
+    private List<Authority> authorities;
 
     public Integer getId() {
         return id;
@@ -67,6 +96,18 @@ public class User implements Serializable {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public List<Authority> getAuthorities() {
+        if (authorities == null) {
+            authorities = new ArrayList<>();
+        }
+
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override
