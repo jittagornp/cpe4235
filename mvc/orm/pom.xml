@@ -9,6 +9,7 @@
     <artifactId>orm</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>mapping</module>
         <module>resource-local</module>
     </modules>
 </project>
