@@ -26,11 +26,19 @@ public class EmployeeT extends AbstractTestNGSpringContextTests {
     private EmployeeRepo repo;
     
     @Test
-    public void test() {
+    public void findOne() {
         Employee employee = repo.findOne(100);
         assertNotNull(employee);
         assertEquals(employee.getFirstName(), "Steven");
         assertEquals(employee.getLastName(), "King");
     }
 
+    @Test
+    public void findDepartment(){
+        Employee employee = repo.findOne(100);
+        assertNotNull(employee);
+        
+        assertNotNull(employee.getDepartment());
+        assertEquals(employee.getDepartment().getName(), "Executive");
+    }
 }
