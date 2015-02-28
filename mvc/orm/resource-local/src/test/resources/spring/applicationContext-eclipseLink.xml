@@ -16,8 +16,7 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context-3.2.xsd">
      
-    <jpa:repositories base-package="th.co.geniustree.auditj2.repository" entity-manager-factory-ref="emf"/> 
-    <jpa:repositories base-package="th.co.geniustree.nhso.basicmodel.repository" entity-manager-factory-ref="emf"/>     
+    <jpa:repositories base-package="com.blogspot.na5cent.resourcelocal.repo" entity-manager-factory-ref="emf"/>    
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
@@ -26,7 +25,7 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
  
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="auditj2"/>
+        <property name="persistenceUnitName" value="resource-local"/>
         <property name="persistenceXmlLocation" value="classpath:persistence.xml"/>
         <property name="jpaDialect" ref="jpaDialect"/>
         <property name="jpaVendorAdapter">
@@ -37,12 +36,12 @@
     <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect " /> 
     
     
-    <!-- database connection pool-->
+    <!-- database connection -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@192.168.1.126:1521:testdb"/>
-        <property name="username" value="auditj2owner"/>
-        <property name="password" value="computer"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:cpe4235"/>
+        <property name="username" value="HR"/>
+        <property name="password" value="HR"/>
     </bean>
 </beans>

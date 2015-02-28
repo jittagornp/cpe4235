@@ -6,10 +6,13 @@
 
 package com.blogspot.na5cent.resourcelocal.repo;
 
+import com.blogspot.na5cent.resourcelocal.model.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author anonymous
  */
-public class EmployeeRepo {
+public interface EmployeeRepo extends JpaRepository<Employee, Integer>{
     
 }
