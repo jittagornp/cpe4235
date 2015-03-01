@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Fri Aug 01 13:44:38 ICT 2014
+com.springsource.org.eclipse.persistence.internal.libraries.asm-2.0.0.jar>com.springsource.repository.bundle.external=
+com.springsource.org.eclipse.persistence.internal.libraries.asm-2.0.0.pom>com.springsource.repository.bundle.external=

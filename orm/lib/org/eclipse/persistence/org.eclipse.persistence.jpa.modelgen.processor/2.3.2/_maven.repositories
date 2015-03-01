@@ -1,0 +1,6 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Mon Sep 08 11:53:21 ICT 2014
+org.eclipse.persistence.jpa.modelgen.processor-2.3.2.jar>eclipselink=
+org.eclipse.persistence.jpa.modelgen.processor-2.3.2.pom>eclipselink=
+org.eclipse.persistence.jpa.modelgen.processor-2.3.2.jar>nexus=
+org.eclipse.persistence.jpa.modelgen.processor-2.3.2.pom>nexus=

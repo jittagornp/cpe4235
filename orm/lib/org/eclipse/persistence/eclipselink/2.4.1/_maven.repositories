@@ -1,0 +1,6 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Mon Sep 08 11:53:21 ICT 2014
+eclipselink-2.4.1.pom>nexus=
+eclipselink-2.4.1.jar>nexus=
+eclipselink-2.4.1.jar>eclipselink=
+eclipselink-2.4.1.pom>eclipselink=

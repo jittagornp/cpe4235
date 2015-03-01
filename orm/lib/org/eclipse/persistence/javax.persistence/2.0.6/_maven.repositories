@@ -1,0 +1,6 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Tue Jul 29 21:00:18 ICT 2014
+javax.persistence-2.0.6.pom>eclipselink=
+javax.persistence-2.0.6.jar>eclipselink=
+javax.persistence-2.0.6.pom>nexus=
+javax.persistence-2.0.6.jar>nexus=

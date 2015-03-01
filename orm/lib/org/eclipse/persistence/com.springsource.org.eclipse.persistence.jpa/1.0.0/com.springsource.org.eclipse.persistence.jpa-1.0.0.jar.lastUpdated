@@ -1,0 +1,7 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Fri Aug 01 12:57:17 ICT 2014
+http\://repository.springsource.com/maven/bundles/external/.lastUpdated=1406872637712
+http\://repository.springsource.com/maven/bundles/release/.lastUpdated=1406872606207
+default-http\://repository.springsource.com/maven/bundles/snapshot/.lastUpdated=1406872552459
+http\://repository.springsource.com/maven/bundles/snapshot/.error=Could not transfer artifact org.eclipse.persistence\:com.springsource.org.eclipse.persistence.jpa\:jar\:1.0.0 from/to com.springsource.repository.bundles.snapshot (http\://repository.springsource.com/maven/bundles/snapshot)\: Connection to http\://repository.springsource.com refused
+http\://repository.springsource.com/maven/bundles/release/.error=

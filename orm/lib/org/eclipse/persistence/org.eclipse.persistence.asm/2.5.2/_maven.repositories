@@ -1,0 +1,8 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Sat Feb 28 09:40:18 ICT 2015
+org.eclipse.persistence.asm-2.5.2.jar>central=
+org.eclipse.persistence.asm-2.5.2.pom>central=
+org.eclipse.persistence.asm-2.5.2.jar>spring-snapshot=
+org.eclipse.persistence.asm-2.5.2.jar>nexus=
+org.eclipse.persistence.asm-2.5.2.pom>spring-snapshot=
+org.eclipse.persistence.asm-2.5.2.pom>nexus=
