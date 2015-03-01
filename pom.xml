@@ -10,6 +10,7 @@
         <module>connect-database</module>
     <module>htmlcssjs</module>
         <module>mvc</module>
+        <module>orm</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

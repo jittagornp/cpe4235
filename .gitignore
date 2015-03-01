@@ -27,3 +27,9 @@ hs_err_pid*
 /mvc/orm/user-mapping/target/
 /mvc/orm/student/target/
 /mvc/orm/student-mapping/target/
+/orm/advance-mapping/target/
+/orm/mapping/target/
+/orm/resource-local/target/
+/orm/spring-data/target/
+/orm/student-mapping/target/
+/orm/user-mapping/target/
