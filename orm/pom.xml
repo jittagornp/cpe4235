@@ -6,14 +6,15 @@
         <artifactId>cpe4235</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <groupId>com.pamarin.cpe4235</groupId>
     <artifactId>orm</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>advance-mapping</module>
         <module>mapping</module>
         <module>resource-local</module>
-        <module>advance-mapping</module>
         <module>spring-data</module>
-        <module>user-mapping</module>
         <module>student-mapping</module>
+        <module>user-mapping</module>
     </modules>
 </project>

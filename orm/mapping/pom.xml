@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>orm</artifactId>
-        <groupId>com.blogspot.na5cent</groupId>
+        <groupId>com.pamarin.cpe4235</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
