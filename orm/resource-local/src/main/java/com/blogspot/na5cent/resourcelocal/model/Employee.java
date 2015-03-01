@@ -6,11 +6,13 @@
 package com.blogspot.na5cent.resourcelocal.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -27,6 +29,36 @@ public class Employee implements Serializable {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    private String email;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "hire_date")
+    private Date hireDate;
+    @Column(name = "job_id")
+    private String jobId;
+
+    public String getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Integer getId() {
         return id;
