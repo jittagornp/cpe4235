@@ -13,7 +13,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -34,15 +33,6 @@ public class User implements Serializable {
     private String username;
     @Column(nullable = false)
     private String password;
-    //--------------------------------------------------------------------------
-    @JoinColumn(
-            name = "user_id",
-            referencedColumnName = "employee_id",
-            insertable = false,
-            updatable = false
-    )
-    @OneToOne
-    private Employee employee;
     //--------------------------------------------------------------------------
     @ManyToMany
     @JoinTable(
@@ -65,6 +55,15 @@ public class User implements Serializable {
             }
     )
     private List<Authority> authorities;
+    //--------------------------------------------------------------------------
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "employee_id",
+            insertable = false,
+            updatable = false
+    )
+    @OneToOne
+    private Employee employee;
 
     public Integer getId() {
         return id;

@@ -6,6 +6,7 @@
 
 import com.blogspot.na5cent.resourcelocal.model.Employee;
 import com.blogspot.na5cent.resourcelocal.repo.EmployeeRepo;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -26,11 +27,17 @@ public class EmployeeT extends AbstractTestNGSpringContextTests {
     private EmployeeRepo repo;
     
     @Test
-    public void test() {
+    public void findOne() {
         Employee employee = repo.findOne(100);
         assertNotNull(employee);
         assertEquals(employee.getFirstName(), "Steven");
         assertEquals(employee.getLastName(), "King");
+    }
+    
+    @Test
+    public void findAll(){
+        List<Employee> employees = repo.findAll();
+        assertEquals(employees.size(), 107);
     }
 
 }

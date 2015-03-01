@@ -12,5 +12,8 @@
         <module>mapping</module>
         <module>resource-local</module>
         <module>advance-mapping</module>
+        <module>spring-data</module>
+        <module>user-mapping</module>
+        <module>student-mapping</module>
     </modules>
 </project>

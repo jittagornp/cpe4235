@@ -21,7 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/employees")
 public class EmployeeCtrl extends HttpServlet {
 
-    private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void query(HttpServletRequest req, HttpServletResponse resp) 
+            throws ServletException, IOException {
         String query = req.getParameter("q");
         String searchBy = req.getParameter("search_by");
 

@@ -13,5 +13,7 @@
     <module>old-style</module>
     <module>servlet</module>
     <module>primefaces</module>
+    <module>orm</module>
+    <module>resource-local</module>
   </modules>
 </project>

@@ -15,3 +15,15 @@ hs_err_pid*
 /mvc/old-style/target/
 /mvc/servlet/target/
 /mvc/primefaces/target/
+/mvc/resource-local/target/
+/mvc/orm/resource-local/target/
+/mvc/orm/resource-local - Copy/target/
+/mvc/orm/mapping/target/
+/mvc/orm/mapping - Copy/target/
+/mvc/orm/advance-mapping/target/
+/mvc/orm/spring-data/target/
+/mvc/orm/advance-mapping - Copy/target/
+/mvc/orm/manual/target/
+/mvc/orm/user-mapping/target/
+/mvc/orm/student/target/
+/mvc/orm/student-mapping/target/

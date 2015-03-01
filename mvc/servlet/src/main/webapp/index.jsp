@@ -1,11 +1,6 @@
 <%@page import="com.blogspot.na5cent.connectdb.util.CollectionUtils"%>
 <%@page import="com.blogspot.na5cent.model.Employee"%>
 <%@page import="java.util.List"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
