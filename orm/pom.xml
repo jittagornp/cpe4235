@@ -16,5 +16,6 @@
         <module>spring-data</module>
         <module>student-mapping</module>
         <module>user-mapping</module>
-    </modules>
+    <module>hr</module>
+  </modules>
 </project>

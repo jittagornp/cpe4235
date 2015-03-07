@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:f="http://java.sun.com/jsf/core">
+    <script>
+        (function($, doc, SELECTOR) {
+            $(function() {
+                var MOUSEWHEEL_STEP = 20;
+                $(doc).on(
+                        'mousewheel DOMMouseScroll',
+                        SELECTOR.join(','),
+                        function(event) {
+                            var scrollTo = null;
+
+                            if (event.type === 'mousewheel') {
+                                scrollTo = (event.originalEvent.wheelDelta * -1);
+                            }
+                            else if (event.type === 'DOMMouseScroll') {
+                                scrollTo = MOUSEWHEEL_STEP * event.originalEvent.detail;
+                            }
+
+                            if (scrollTo) {
+                                event.preventDefault();
+                                $(this).scrollTop(scrollTo + $(this).scrollTop());
+                            }
+                        }
+                );
+            });
+        })(jQuery, document, [
+            '.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-items-wrapper',
+            '.ui-selectonemenu-panel .ui-selectonemenu-items-wrapper'
+        ]);
+    </script>
+</ui:composition>

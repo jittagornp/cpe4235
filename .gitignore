@@ -33,3 +33,5 @@ hs_err_pid*
 /orm/spring-data/target/
 /orm/student-mapping/target/
 /orm/user-mapping/target/
+/htmlcssjs/src/main/webapp/example.html
+/orm/hr/target/

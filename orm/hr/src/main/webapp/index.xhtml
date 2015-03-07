@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>HR System</title>
+        <link href="static/less/app.less" rel="stylesheet/less"/>
+        <script src="static/js/org/lesscss/less.js"></script>
+        <ui:include src="static/template/bugstyle.xhtml"/>
+        <style>
+            body{
+                padding: 15px;
+            }
+
+            .search-box{
+                margin-bottom: 15px;
+                position: relative;
+            }
+
+            .add-button{
+                position: absolute; 
+                right: 0
+            }
+
+            #addDialogForm .form-grid > tbody > tr > td:first-child{
+                width: 30%;
+            }
+            
+            #addDialogForm .ui-inputtext,
+            #addDialogForm .ui-inputfield.hasDatepicker{
+                width: 245px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <p:growl id="notification"
+                 showSummary="true"
+                 showDetail="true"/>
+
+        <h1>Employees</h1>
+        <h:form id="employeeForm">
+            <div class="search-box">
+                <p:inputText id="searchKeyword" value="#{employeeCtrl.keyword}"/>
+                <p:watermark for="searchKeyword" value="พิมพ์ชื่อที่ต้องการลงไป..."/>
+                <p:spacer width="10"/>
+                <p:commandButton value="ค้นหา"
+                                 actionListener="#{employeeCtrl.onSearch()}"
+                                 update="@form"
+                                 icon="ui-icon-search"
+                                 styleClass="blue-button"/>
+                <p:spacer width="5"/>
+                <p:commandButton value="เคลียร์"
+                                 actionListener="#{employeeCtrl.onClear()}"
+                                 update="@form"
+                                 icon="ui-icon-close"
+                                 styleClass="white-button"/>
+                <p:commandButton value="เพิ่ม"
+                                 oncomplete="PF('addWidgetDialog').show()"
+                                 update=":addDialogForm"
+                                 icon="ui-icon-plus"
+                                 styleClass="add-button green-button"/>
+            </div>
+            <p:dataTable value="#{employeeCtrl.employees}"
+                         rowIndexVar="counter"
+                         var="item">
+                <p:column headerText="no." style="width: 5%">
+                    #{counter + 1}
+                </p:column>
+                <p:column headerText="id">
+                    #{item.id}
+                </p:column>
+                <p:column headerText="ชื่อ">
+                    #{item.firstName}
+                </p:column>
+                <p:column headerText="นามสกุล">
+                    #{item.lastName}
+                </p:column>
+                <p:column headerText="email">
+                    #{item.email}
+                </p:column>
+                <p:column headerText="เบอร์โทรศัพท์">
+                    #{item.phoneNumber}
+                </p:column>
+                <p:column headerText="วันที่จ้าง">
+                    <h:outputText value="#{item.hireDate}">
+                        <f:convertDateTime pattern="EE dd MMM YYYY"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="งาน">
+                    #{item.jobId}
+                </p:column>
+                <p:column headerText="เงินเดือน">
+                    <h:outputText value="#{item.salary}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#">
+                    <p:commandLink value="ลบ"
+                                   update=":deleteDialogForm"
+                                   oncomplete="PF('deleteWidgetDialog').show()"
+                                   actionListener="#{employeeCtrl.onSelect()}">
+                        <f:param name="employeeId" value="#{item.id}"/>
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog id="addDialog"
+                  width="500"
+                  modal="true"
+                  header="เพิ่มบุคลากร"
+                  resizable="false"
+                  widgetVar="addWidgetDialog">
+            <h:form id="addDialogForm">
+                <h:panelGrid columns="2" styleClass="form-grid">
+                    <h:outputText value="id"/>
+                    <p:inputText value="#{employeeCtrl.employee.id}"/>
+
+                    <h:outputText value="ชื่อ"/>
+                    <p:inputText value="#{employeeCtrl.employee.firstName}"/>
+
+                    <h:outputText value="นามสกุล"/>
+                    <p:inputText value="#{employeeCtrl.employee.lastName}"/>
+
+                    <h:outputText value="email"/>
+                    <p:inputText value="#{employeeCtrl.employee.email}"/>
+
+                    <h:outputText value="เบอร์โทรศัพท์"/>
+                    <p:inputText value="#{employeeCtrl.employee.phoneNumber}"/>
+
+                    <h:outputText value="วันที่จ้าง"/>
+                    <p:calendar value="#{employeeCtrl.employee.hireDate}"/>
+
+                    <h:outputText value="งาน"/>
+                    <p:selectOneMenu value="#{employeeCtrl.employee.jobId}">
+                        <f:selectItems value="#{employeeCtrl.jobs}"
+                                       var="job"
+                                       itemValue="#{job.id}"
+                                       itemLabel="#{job.title}"/>
+                    </p:selectOneMenu>    
+
+                    <h:outputText value="เงินเดือน"/>
+                    <p:inputText value="#{employeeCtrl.employee.salary}"/>
+                </h:panelGrid>
+                <div class="dialog-footer">
+                    <div class="dialog-footer-right">
+                        <p:commandButton value="บันทึกข้อมูล"
+                                         update=":employeeForm, :notification"
+                                         actionListener="#{employeeCtrl.onAdd()}"
+                                         oncomplete="PF('addWidgetDialog').hide()"
+                                         icon="ui-icon-disk"
+                                         styleClass="blue-button"/>
+                        <p:spacer width="10"/>
+                        <p:commandButton value="ยกเลิก"
+                                         type="button"
+                                         onclick="PF('addWidgetDialog').hide()"
+                                         icon="ui-icon-close"
+                                         styleClass="white-plain-button"/>
+                    </div>
+                </div>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog id="deleteDialog"
+                  width="500"
+                  modal="true"
+                  header="ลบบุคลากร"
+                  resizable="false"
+                  widgetVar="deleteWidgetDialog">
+            <h:form id="deleteDialogForm">
+                <h:panelGrid columns="2" styleClass="form-grid">
+                    <h:outputText value="id"/>
+                    <h:outputText value="#{employeeCtrl.employee.id}"/>
+
+                    <h:outputText value="ชื่อ"/>
+                    <h:outputText value="#{employeeCtrl.employee.firstName}"/>
+
+                    <h:outputText value="นามสกุล"/>
+                    <h:outputText value="#{employeeCtrl.employee.lastName}"/>
+
+                </h:panelGrid>
+                <div class="dialog-footer">
+                    <div class="dialog-footer-right">
+                        <p:commandButton value="ยืนยันการลบข้อมูล"
+                                         update=":employeeForm, :notification"
+                                         actionListener="#{employeeCtrl.onDelete()}"
+                                         oncomplete="PF('deleteWidgetDialog').hide()"
+                                         icon="ui-icon-check"
+                                         styleClass="red-button"/>
+                        <p:spacer width="10"/>
+                        <p:commandButton value="ยกเลิก"
+                                         type="button"
+                                         onclick="PF('deleteWidgetDialog').hide()"
+                                         icon="ui-icon-close"
+                                         styleClass="white-plain-button"/>
+                    </div>
+                </div>
+            </h:form>
+        </p:dialog>
+        
+        
+        <ui:include src="static/template/scrollbar-lcok.xhtml"/>
+    </h:body>
+</html>
+
