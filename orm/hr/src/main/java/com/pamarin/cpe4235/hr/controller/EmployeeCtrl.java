@@ -58,6 +58,10 @@ public class EmployeeCtrl {
 
         return employee;
     }
+    
+    public void onCreate(){
+        employee = new Employee();
+    }
 
     public List<Job> getJobs() {
         if (jobs == null) {
@@ -101,34 +105,42 @@ public class EmployeeCtrl {
                         ));
     }
 
-    public void onAdd() {
+    private void save(String title) {
         try {
             employeeService.save(employee);
             employee = null;
             onSearch();
             notify(
                     FacesMessage.SEVERITY_INFO,
-                    "การเพิ่มข้อมูลบุคลากร",
+                    title,
                     "สำเร็จ"
             );
         } catch (Exception ex) {
             notify(
                     FacesMessage.SEVERITY_ERROR,
-                    "การเพิ่มข้อมูลบุคลากร",
+                    title,
                     "ล้มเหลว เนื่องจาก " + ex.getMessage()
             );
         }
     }
 
-    private Object request(String paramName) {
-        return FacesContext.getCurrentInstance()
+    public void onEdit() {
+        save("การแก้ไขข้อมูลบุคลากร");
+    }
+
+    public void onAdd() {
+        save("การเพิ่มข้อมูลบุคลากร");
+    }
+
+    private String request(String paramName) {
+        return (String) FacesContext.getCurrentInstance()
                 .getExternalContext()
                 .getRequestParameterMap()
                 .get(paramName);
     }
 
     public void onSelect() {
-        Integer employeeId = Integer.valueOf((String) request("employeeId"));
+        Integer employeeId = Integer.valueOf(request("employeeId"));
         int index = getEmployees().indexOf(new Employee(employeeId));
         employee = index == -1 ? null : getEmployees().get(index);
     }

@@ -12,6 +12,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,8 +34,9 @@ public class Department implements Serializable {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
     //--------------------------------------------------------------------------
-    @Column(name = "location_id")
-    private Integer locationId;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     public Integer getId() {
         return id;
@@ -63,12 +66,12 @@ public class Department implements Serializable {
         this.employees = employees;
     }
 
-    public Integer getLocationId() {
-        return locationId;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @Override

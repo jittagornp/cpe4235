@@ -34,10 +34,10 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String password;
     //--------------------------------------------------------------------------
-    @ManyToMany
-    @JoinTable(
-            name = "user_authority",
-            joinColumns = {
+    @ManyToMany //2
+    @JoinTable( //3
+            name = "user_authority", //4
+            joinColumns = { //5
                 @JoinColumn(
                         name = "user_id",
                         referencedColumnName = "user_id",
@@ -45,7 +45,7 @@ public class User implements Serializable {
                         updatable = false
                 )
             },
-            inverseJoinColumns = {
+            inverseJoinColumns = { //6
                 @JoinColumn(
                         name = "auth_id",
                         referencedColumnName = "auth_id",
@@ -54,7 +54,7 @@ public class User implements Serializable {
                 )
             }
     )
-    private List<Authority> authorities;
+    private List<Authority> authorities; //1
     //--------------------------------------------------------------------------
     @JoinColumn(
             name = "user_id",

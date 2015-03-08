@@ -25,12 +25,12 @@
                 right: 0
             }
 
-            #addDialogForm .form-grid > tbody > tr > td:first-child{
+            #saveDialogForm .form-grid > tbody > tr > td:first-child{
                 width: 30%;
             }
-            
-            #addDialogForm .ui-inputtext,
-            #addDialogForm .ui-inputfield.hasDatepicker{
+
+            #saveDialogForm .ui-inputtext,
+            #saveDialogForm .ui-inputfield.hasDatepicker{
                 width: 245px;
             }
         </style>
@@ -58,8 +58,9 @@
                                  icon="ui-icon-close"
                                  styleClass="white-button"/>
                 <p:commandButton value="เพิ่ม"
-                                 oncomplete="PF('addWidgetDialog').show()"
-                                 update=":addDialogForm"
+                                 actionListener="#{employeeCtrl.onCreate()}"
+                                 oncomplete="PF('saveWidgetDialog').show()"
+                                 update=":saveDialogPanel"
                                  icon="ui-icon-plus"
                                  styleClass="add-button green-button"/>
             </div>
@@ -98,6 +99,13 @@
                     </h:outputText>
                 </p:column>
                 <p:column headerText="#">
+                    <p:commandLink value="แก้ไข"
+                                   update=":saveDialogPanel"
+                                   oncomplete="PF('saveWidgetDialog').show()"
+                                   actionListener="#{employeeCtrl.onSelect()}">
+                        <f:param name="employeeId" value="#{item.id}"/>
+                    </p:commandLink>
+                    <p:spacer width="10"/>
                     <p:commandLink value="ลบ"
                                    update=":deleteDialogForm"
                                    oncomplete="PF('deleteWidgetDialog').show()"
@@ -108,61 +116,63 @@
             </p:dataTable>
         </h:form>
 
-        <p:dialog id="addDialog"
-                  width="500"
-                  modal="true"
-                  header="เพิ่มบุคลากร"
-                  resizable="false"
-                  widgetVar="addWidgetDialog">
-            <h:form id="addDialogForm">
-                <h:panelGrid columns="2" styleClass="form-grid">
-                    <h:outputText value="id"/>
-                    <p:inputText value="#{employeeCtrl.employee.id}"/>
+        <p:outputPanel id="saveDialogPanel">
+            <p:dialog id="saveDialog"
+                      width="500"
+                      modal="true"
+                      header="#{employeeCtrl.employee.id eq null ? 'เพิ่ม' : 'แก้ไข'}บุคลากร"
+                      resizable="false"
+                      widgetVar="saveWidgetDialog">
+                <h:form id="saveDialogForm">
+                    <h:panelGrid columns="2" styleClass="form-grid">
+                        <h:outputText value="id"/>
+                        <p:inputText value="#{employeeCtrl.employee.id}"/>
 
-                    <h:outputText value="ชื่อ"/>
-                    <p:inputText value="#{employeeCtrl.employee.firstName}"/>
+                        <h:outputText value="ชื่อ"/>
+                        <p:inputText value="#{employeeCtrl.employee.firstName}"/>
 
-                    <h:outputText value="นามสกุล"/>
-                    <p:inputText value="#{employeeCtrl.employee.lastName}"/>
+                        <h:outputText value="นามสกุล"/>
+                        <p:inputText value="#{employeeCtrl.employee.lastName}"/>
 
-                    <h:outputText value="email"/>
-                    <p:inputText value="#{employeeCtrl.employee.email}"/>
+                        <h:outputText value="email"/>
+                        <p:inputText value="#{employeeCtrl.employee.email}"/>
 
-                    <h:outputText value="เบอร์โทรศัพท์"/>
-                    <p:inputText value="#{employeeCtrl.employee.phoneNumber}"/>
+                        <h:outputText value="เบอร์โทรศัพท์"/>
+                        <p:inputText value="#{employeeCtrl.employee.phoneNumber}"/>
 
-                    <h:outputText value="วันที่จ้าง"/>
-                    <p:calendar value="#{employeeCtrl.employee.hireDate}"/>
+                        <h:outputText value="วันที่จ้าง"/>
+                        <p:calendar value="#{employeeCtrl.employee.hireDate}"/>
 
-                    <h:outputText value="งาน"/>
-                    <p:selectOneMenu value="#{employeeCtrl.employee.jobId}">
-                        <f:selectItems value="#{employeeCtrl.jobs}"
-                                       var="job"
-                                       itemValue="#{job.id}"
-                                       itemLabel="#{job.title}"/>
-                    </p:selectOneMenu>    
+                        <h:outputText value="งาน"/>
+                        <p:selectOneMenu value="#{employeeCtrl.employee.jobId}">
+                            <f:selectItems value="#{employeeCtrl.jobs}"
+                                           var="job"
+                                           itemValue="#{job.id}"
+                                           itemLabel="#{job.title}"/>
+                        </p:selectOneMenu>    
 
-                    <h:outputText value="เงินเดือน"/>
-                    <p:inputText value="#{employeeCtrl.employee.salary}"/>
-                </h:panelGrid>
-                <div class="dialog-footer">
-                    <div class="dialog-footer-right">
-                        <p:commandButton value="บันทึกข้อมูล"
-                                         update=":employeeForm, :notification"
-                                         actionListener="#{employeeCtrl.onAdd()}"
-                                         oncomplete="PF('addWidgetDialog').hide()"
-                                         icon="ui-icon-disk"
-                                         styleClass="blue-button"/>
-                        <p:spacer width="10"/>
-                        <p:commandButton value="ยกเลิก"
-                                         type="button"
-                                         onclick="PF('addWidgetDialog').hide()"
-                                         icon="ui-icon-close"
-                                         styleClass="white-plain-button"/>
+                        <h:outputText value="เงินเดือน"/>
+                        <p:inputText value="#{employeeCtrl.employee.salary}"/>
+                    </h:panelGrid>
+                    <div class="dialog-footer">
+                        <div class="dialog-footer-right">
+                            <p:commandButton value="บันทึกข้อมูล"
+                                             update=":employeeForm, :notification"
+                                             actionListener="#{employeeCtrl.onAdd()}"
+                                             oncomplete="PF('saveWidgetDialog').hide()"
+                                             icon="ui-icon-disk"
+                                             styleClass="blue-button"/>
+                            <p:spacer width="10"/>
+                            <p:commandButton value="ยกเลิก"
+                                             type="button"
+                                             onclick="PF('saveWidgetDialog').hide()"
+                                             icon="ui-icon-close"
+                                             styleClass="white-plain-button"/>
+                        </div>
                     </div>
-                </div>
-            </h:form>
-        </p:dialog>
+                </h:form>
+            </p:dialog>
+        </p:outputPanel>
 
         <p:dialog id="deleteDialog"
                   width="500"
@@ -200,8 +210,8 @@
                 </div>
             </h:form>
         </p:dialog>
-        
-        
+
+
         <ui:include src="static/template/scrollbar-lcok.xhtml"/>
     </h:body>
 </html>

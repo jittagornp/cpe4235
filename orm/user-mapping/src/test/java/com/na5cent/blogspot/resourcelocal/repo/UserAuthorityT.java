@@ -31,18 +31,13 @@ public class UserAuthorityT extends AbstractTestNGSpringContextTests {
     
     @Test
     public void findAuthorities(){
-        Authority authority = new Authority("ADMIN");
+        Authority admin = new Authority("ADMIN");
+        Authority superAdmin = new Authority("SUPER_ADMIN");
         
         User user = repo.findOne(100);
         List<Authority> authorities = user.getAuthorities();
         
-        if(authorities.isEmpty()){
-            authorities.add(authority);
-            repo.save(user);
-            
-            user = repo.findOne(100);
-        }
-        
-        assertTrue(user.getAuthorities().contains(authority));
+        assertTrue(authorities.contains(admin));
+        assertTrue(authorities.contains(superAdmin));
     }
 }

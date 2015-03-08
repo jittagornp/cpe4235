@@ -11,14 +11,14 @@ import com.pamarin.cpe4235.hr.service.EmployeeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author anonymous
  */
 @Service
-@TransactionConfiguration
+@Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -46,7 +46,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
+        ////
         return repo.save(employee);
+        /////
     }
 
 }
